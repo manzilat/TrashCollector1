@@ -195,6 +195,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -204,8 +205,14 @@
     <Compile Include="Migrations\201812081809282_initial migration.Designer.cs">
       <DependentUpon>201812081809282_initial migration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812081903531_added customer and empoloyee model.cs" />
+    <Compile Include="Migrations\201812081903531_added customer and empoloyee model.Designer.cs">
+      <DependentUpon>201812081903531_added customer and empoloyee model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -273,6 +280,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Customer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -290,6 +298,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201812081809282_initial migration.resx">
       <DependentUpon>201812081809282_initial migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812081903531_added customer and empoloyee model.resx">
+      <DependentUpon>201812081903531_added customer and empoloyee model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
