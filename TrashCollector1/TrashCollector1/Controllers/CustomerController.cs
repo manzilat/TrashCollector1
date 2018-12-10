@@ -82,7 +82,7 @@ namespace TrashCollector1.Controllers
         }
 
         // GET: Customer/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
             Customer customer = db.Customer.Find(id);
             return View(customer);
