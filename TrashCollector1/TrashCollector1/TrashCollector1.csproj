@@ -198,6 +198,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RegularPickupController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -216,6 +217,22 @@
     <Compile Include="Migrations\201812111940000_added models to the database.cs" />
     <Compile Include="Migrations\201812111940000_added models to the database.Designer.cs">
       <DependentUpon>201812111940000_added models to the database.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812111954015_made some changes in reqular pikup and details model.cs" />
+    <Compile Include="Migrations\201812111954015_made some changes in reqular pikup and details model.Designer.cs">
+      <DependentUpon>201812111954015_made some changes in reqular pikup and details model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812112026497_removed some properties from pickupmodel.cs" />
+    <Compile Include="Migrations\201812112026497_removed some properties from pickupmodel.Designer.cs">
+      <DependentUpon>201812112026497_removed some properties from pickupmodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812112028213_changes made.cs" />
+    <Compile Include="Migrations\201812112028213_changes made.Designer.cs">
+      <DependentUpon>201812112028213_changes made.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812112043035_removed customer%27s foreign key.cs" />
+    <Compile Include="Migrations\201812112043035_removed customer%27s foreign key.Designer.cs">
+      <DependentUpon>201812112043035_removed customer%27s foreign key.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountSuspend.cs" />
@@ -293,11 +310,8 @@
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Customer\Delete.cshtml" />
     <Content Include="Views\Customer\Details.cshtml" />
-    <Content Include="Views\RegularPickups\Create.cshtml" />
-    <Content Include="Views\RegularPickups\Delete.cshtml" />
-    <Content Include="Views\RegularPickups\Details.cshtml" />
-    <Content Include="Views\RegularPickups\Edit.cshtml" />
-    <Content Include="Views\RegularPickups\Index.cshtml" />
+    <Content Include="Views\RegularPickup\Create.cshtml" />
+    <Content Include="Views\RegularPickup\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -327,6 +341,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812111940000_added models to the database.resx">
       <DependentUpon>201812111940000_added models to the database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812111954015_made some changes in reqular pikup and details model.resx">
+      <DependentUpon>201812111954015_made some changes in reqular pikup and details model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812112026497_removed some properties from pickupmodel.resx">
+      <DependentUpon>201812112026497_removed some properties from pickupmodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812112028213_changes made.resx">
+      <DependentUpon>201812112028213_changes made.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812112043035_removed customer%27s foreign key.resx">
+      <DependentUpon>201812112043035_removed customer%27s foreign key.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
