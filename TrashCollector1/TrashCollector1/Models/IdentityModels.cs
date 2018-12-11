@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -31,5 +32,10 @@ namespace TrashCollector1.Models
         }
         public DbSet<Customer> Customer { get; set; }
         public DbSet<Employee> Employee { get; set; }
+        public DbSet<RegularPickup> RegularPickup { get; set; }
+
+
+       
+        
     }
 }

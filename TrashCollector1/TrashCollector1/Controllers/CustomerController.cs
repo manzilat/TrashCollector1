@@ -19,10 +19,11 @@ namespace TrashCollector1.Controllers
         }
 
         // GET: Customer/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id )
         {
-
+           
             Customer customer = db.Customer.Find(id);
+  
 
             return View(customer);
         }
@@ -43,7 +44,7 @@ namespace TrashCollector1.Controllers
 
                 db.Customer.Add(customer);
                 db.SaveChanges();
-                return RedirectToAction("Details");
+                return RedirectToAction("Details", new { id = customer.Id }); 
             }
 
 
@@ -91,6 +92,7 @@ namespace TrashCollector1.Controllers
         // POST: Customer/Delete/5
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
+
         {
             Customer customer = db.Customer.Find(id);
             customer.FullName = "Deleted";

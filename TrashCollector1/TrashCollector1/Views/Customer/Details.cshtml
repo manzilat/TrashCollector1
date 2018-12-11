@@ -59,11 +59,12 @@
         </dd>
 
         @Html.HiddenFor(model => model.ApplicationUserId)
-
-
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="button" class="btn btn-success" value="Trash Pickup" onclick="location.href='@Url.Action("Create", "RegularPickups")'" />&nbsp;
+        @*// <input type="submit" value="Pay Now" class="btn btn-success" />*@
+    </div>
+</div>
+

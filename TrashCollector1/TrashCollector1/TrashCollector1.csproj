@@ -209,6 +209,14 @@
     <Compile Include="Migrations\201812081903531_added customer and empoloyee model.Designer.cs">
       <DependentUpon>201812081903531_added customer and empoloyee model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812101721006_added models for usual pickups,special pickups and suspend account.cs" />
+    <Compile Include="Migrations\201812101721006_added models for usual pickups,special pickups and suspend account.Designer.cs">
+      <DependentUpon>201812101721006_added models for usual pickups,special pickups and suspend account.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812111940000_added models to the database.cs" />
+    <Compile Include="Migrations\201812111940000_added models to the database.Designer.cs">
+      <DependentUpon>201812111940000_added models to the database.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountSuspend.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -281,10 +289,15 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
-    <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Customer\Create.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Customer\Delete.cshtml" />
+    <Content Include="Views\Customer\Details.cshtml" />
+    <Content Include="Views\RegularPickups\Create.cshtml" />
+    <Content Include="Views\RegularPickups\Delete.cshtml" />
+    <Content Include="Views\RegularPickups\Details.cshtml" />
+    <Content Include="Views\RegularPickups\Edit.cshtml" />
+    <Content Include="Views\RegularPickups\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -308,6 +321,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812081903531_added customer and empoloyee model.resx">
       <DependentUpon>201812081903531_added customer and empoloyee model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812101721006_added models for usual pickups,special pickups and suspend account.resx">
+      <DependentUpon>201812101721006_added models for usual pickups,special pickups and suspend account.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812111940000_added models to the database.resx">
+      <DependentUpon>201812111940000_added models to the database.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
