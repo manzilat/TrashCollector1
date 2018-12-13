@@ -199,6 +199,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RegularPickupController.cs" />
+    <Compile Include="Controllers\SpecialPickupController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -249,6 +250,10 @@
     <Compile Include="Migrations\201812131631002_removed requied from time.cs" />
     <Compile Include="Migrations\201812131631002_removed requied from time.Designer.cs">
       <DependentUpon>201812131631002_removed requied from time.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812131855305_added special pickup model.cs" />
+    <Compile Include="Migrations\201812131855305_added special pickup model.Designer.cs">
+      <DependentUpon>201812131855305_added special pickup model.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountSuspend.cs" />
@@ -330,6 +335,11 @@
     <Content Include="Views\RegularPickup\Details.cshtml" />
     <Content Include="Views\RegularPickup\Edit.cshtml" />
     <Content Include="Views\RegularPickup\DetailsForWeeklyPickup.cshtml" />
+    <Content Include="Views\SpecialPickup\Index.cshtml" />
+    <Content Include="Views\SpecialPickup\Details.cshtml" />
+    <Content Include="Views\SpecialPickup\Create.cshtml" />
+    <Content Include="Views\SpecialPickup\Edit.cshtml" />
+    <Content Include="Views\SpecialPickup\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -383,6 +393,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812131631002_removed requied from time.resx">
       <DependentUpon>201812131631002_removed requied from time.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812131855305_added special pickup model.resx">
+      <DependentUpon>201812131855305_added special pickup model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

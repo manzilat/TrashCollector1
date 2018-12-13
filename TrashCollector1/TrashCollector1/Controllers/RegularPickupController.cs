@@ -79,35 +79,7 @@ namespace TrashCollector1.Controllers
             return View(regularPickup);
         }
 
-        //public ActionResult DetailsForWeeklyPickup(int? id)
-        //{
-
-        //    RegularPickup regularPickup = db.RegularPickup.Find(id);
-        //    return View(regularPickup);
-        //}
-        //[HttpPost]
-        //public ActionResult DetailsForWeeklyPickup([Bind(Include = "PickupDayOfWeek,Time,PickupAddress,Zip,Description")] RegularPickup regularPickup, int id)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        RegularPickup regularPickups = db.RegularPickup.Find(id);
-        //        if (regularPickups == null)
-        //        {
-        //            return RedirectToAction("DisplayError", "RegularPickup");
-        //        }
-        //        regularPickups.PickupDayOfWeek = regularPickup.PickupDayOfWeek;
-        //        regularPickups.Time = regularPickup.Time;
-        //        regularPickups.PickupAddress = regularPickup.PickupAddress;
-        //        regularPickups.Zip = regularPickup.Zip;
-        //        regularPickups.Description = regularPickup.Description;
-
-        //        db.SaveChanges();
-        //        return RedirectToAction("DetailsForWeeklyPickup", new { id = regularPickup.Id });
-        //    }
-        //    return View(regularPickup);
-        //}
-
-        // GET: RegularPickup/Delete/5
+       
         public ActionResult Delete(int id)
         {
             return View();
