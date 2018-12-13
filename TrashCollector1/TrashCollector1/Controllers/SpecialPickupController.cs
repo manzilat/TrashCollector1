@@ -60,18 +60,19 @@ namespace TrashCollector1.Controllers
         {
             if (ModelState.IsValid)
             {
+                SpecialPickup specialPickups = db.SpecialPickup.Find(id);
                 if (specialPickup == null)
                 {
                     return RedirectToAction("DisplayError", "SpecialPickup");
                 }
-                specialPickup.PickupDate = specialPickup.PickupDate;
-                specialPickup.Time = specialPickup.Time;
-                specialPickup.PickupAddress = specialPickup.PickupAddress;
-                specialPickup.Zip = specialPickup.Zip;
-                specialPickup.Description = specialPickup.Description;
+                specialPickups.PickupDate = specialPickup.PickupDate;
+                specialPickups.Time = specialPickup.Time;
+                specialPickups.PickupAddress = specialPickup.PickupAddress;
+                specialPickups.Zip = specialPickup.Zip;
+                specialPickups.Description = specialPickup.Description;
 
                 db.SaveChanges();
-                return RedirectToAction("Details", new { id = specialPickup.id });
+                return RedirectToAction("Details", new { id = specialPickups.id });
             }
             return View(specialPickup);
         }
