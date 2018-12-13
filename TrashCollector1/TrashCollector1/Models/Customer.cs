@@ -20,12 +20,19 @@ namespace TrashCollector1.Models
         [ForeignKey("ApplicationUser")]
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
+
         [ForeignKey("RegularPickup")]
-        public string RegularPickupId { get; set; }
-        public ApplicationUser RegularPickup { get; set; }
+        public int? RegularPickupId { get; set; }
+        public RegularPickup RegularPickup { get; set; }
+
         [ForeignKey("SpecialPickup")]
-        public string SpecialPickupId { get; set; }
-        public ApplicationUser SpecialPickup { get; set; }
+        public int? SpecialPickupId { get; set; }
+        public SpecialPickup SpecialPickup { get; set; }
+
+        [ForeignKey("SuspendAccount")]
+        public int? SuspendAccoutId { get; set; }
+        public SuspendAccount SuspendAccount { get; set; }
+
 
     }
 }

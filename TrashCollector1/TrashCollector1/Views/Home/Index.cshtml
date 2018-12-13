@@ -10,7 +10,18 @@
     <meta charset="utf-8">
 </head>
 <body>
-    <h1>Motush Trash</h1>
+    <style>
+        body {
+           
+            background-position: center;
+            height: 750px;
+            background-image: url('../../Images/bg.jpg');
+
+            background-position: center;
+            background-repeat: no-repeat, repeat;
+            padding: 150px;
+        }
+    </style>
     <p>Better keep yourself clean and bright; you are the window through which you must see the world. </p>
 
     @if (User.Identity.IsAuthenticated)
@@ -23,6 +34,7 @@
                 <li><a href="/Customer/Create">Create You're Profile</a></li>
                 <li><a href="/RegularPickup/Create">Request For Trash Pickup</a></li>
                 <li><a href="/SpecialPickup/Create">Request For Special  Pickup</a></li>
+                <li><a href="/SuspendAccount/Create">Suspend You're Pickup's</a></li>
             </ul>
         }
 
@@ -30,22 +42,20 @@
         {
             <h1>Hello.</h1>
             <h2>Choose from several options below:</h2>
-            <ul>
-              
-            </ul>
+            <ul></ul>
         }
     }
     else
     {
         //No user is logged in
-            <h2>Please login.</h2>
-            <h3>How To - Instructions</h3>
-            <ol>
-                <li>Customer must login</li>
-                <li>Customer must request fot trash pickup</li>
-                
-            </ol>
-            <p><strong>Note:</strong> All employees must login to view all customer requests.</p>
+        <h2>Please login.</h2>
+        <h3>How To - Instructions</h3>
+        <ol>
+            <li>Customer must login</li>
+            <li>Customer must request fot trash pickup</li>
+
+        </ol>
+        <p><strong>Note:</strong> All employees must login to view all customer requests.</p>
     }
-        </body>
+</body>
 </html>

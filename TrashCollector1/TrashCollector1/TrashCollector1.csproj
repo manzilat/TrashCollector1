@@ -200,63 +200,19 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RegularPickupController.cs" />
     <Compile Include="Controllers\SpecialPickupController.cs" />
+    <Compile Include="Controllers\SuspendAccountController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812081809282_initial migration.cs" />
-    <Compile Include="Migrations\201812081809282_initial migration.Designer.cs">
-      <DependentUpon>201812081809282_initial migration.cs</DependentUpon>
+    <Compile Include="Migrations\201812131943352_init.cs" />
+    <Compile Include="Migrations\201812131943352_init.Designer.cs">
+      <DependentUpon>201812131943352_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812081903531_added customer and empoloyee model.cs" />
-    <Compile Include="Migrations\201812081903531_added customer and empoloyee model.Designer.cs">
-      <DependentUpon>201812081903531_added customer and empoloyee model.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812101721006_added models for usual pickups,special pickups and suspend account.cs" />
-    <Compile Include="Migrations\201812101721006_added models for usual pickups,special pickups and suspend account.Designer.cs">
-      <DependentUpon>201812101721006_added models for usual pickups,special pickups and suspend account.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812111940000_added models to the database.cs" />
-    <Compile Include="Migrations\201812111940000_added models to the database.Designer.cs">
-      <DependentUpon>201812111940000_added models to the database.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812111954015_made some changes in reqular pikup and details model.cs" />
-    <Compile Include="Migrations\201812111954015_made some changes in reqular pikup and details model.Designer.cs">
-      <DependentUpon>201812111954015_made some changes in reqular pikup and details model.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812112026497_removed some properties from pickupmodel.cs" />
-    <Compile Include="Migrations\201812112026497_removed some properties from pickupmodel.Designer.cs">
-      <DependentUpon>201812112026497_removed some properties from pickupmodel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812112028213_changes made.cs" />
-    <Compile Include="Migrations\201812112028213_changes made.Designer.cs">
-      <DependentUpon>201812112028213_changes made.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812112043035_removed customer%27s foreign key.cs" />
-    <Compile Include="Migrations\201812112043035_removed customer%27s foreign key.Designer.cs">
-      <DependentUpon>201812112043035_removed customer%27s foreign key.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812121732062_updating.cs" />
-    <Compile Include="Migrations\201812121732062_updating.Designer.cs">
-      <DependentUpon>201812121732062_updating.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812131610376_updated regular pickup model.cs" />
-    <Compile Include="Migrations\201812131610376_updated regular pickup model.Designer.cs">
-      <DependentUpon>201812131610376_updated regular pickup model.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812131627433_added Time,PickupAddress,Zip to regular pickup model.cs" />
-    <Compile Include="Migrations\201812131627433_added Time,PickupAddress,Zip to regular pickup model.Designer.cs">
-      <DependentUpon>201812131627433_added Time,PickupAddress,Zip to regular pickup model.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812131631002_removed requied from time.cs" />
-    <Compile Include="Migrations\201812131631002_removed requied from time.Designer.cs">
-      <DependentUpon>201812131631002_removed requied from time.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812131855305_added special pickup model.cs" />
-    <Compile Include="Migrations\201812131855305_added special pickup model.Designer.cs">
-      <DependentUpon>201812131855305_added special pickup model.cs</DependentUpon>
+    <Compile Include="Migrations\201812131954494_updated.cs" />
+    <Compile Include="Migrations\201812131954494_updated.Designer.cs">
+      <DependentUpon>201812131954494_updated.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountSuspend.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -264,6 +220,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RegularPickup.cs" />
     <Compile Include="Models\SpecialPickup.cs" />
+    <Compile Include="Models\SuspendAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -276,6 +233,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\bg.jpg" />
+    <Content Include="Images\MotushTrash.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -343,6 +302,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\SuspendAccount\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -358,44 +318,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812081809282_initial migration.resx">
-      <DependentUpon>201812081809282_initial migration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812131943352_init.resx">
+      <DependentUpon>201812131943352_init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812081903531_added customer and empoloyee model.resx">
-      <DependentUpon>201812081903531_added customer and empoloyee model.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812101721006_added models for usual pickups,special pickups and suspend account.resx">
-      <DependentUpon>201812101721006_added models for usual pickups,special pickups and suspend account.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812111940000_added models to the database.resx">
-      <DependentUpon>201812111940000_added models to the database.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812111954015_made some changes in reqular pikup and details model.resx">
-      <DependentUpon>201812111954015_made some changes in reqular pikup and details model.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812112026497_removed some properties from pickupmodel.resx">
-      <DependentUpon>201812112026497_removed some properties from pickupmodel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812112028213_changes made.resx">
-      <DependentUpon>201812112028213_changes made.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812112043035_removed customer%27s foreign key.resx">
-      <DependentUpon>201812112043035_removed customer%27s foreign key.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812121732062_updating.resx">
-      <DependentUpon>201812121732062_updating.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812131610376_updated regular pickup model.resx">
-      <DependentUpon>201812131610376_updated regular pickup model.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812131627433_added Time,PickupAddress,Zip to regular pickup model.resx">
-      <DependentUpon>201812131627433_added Time,PickupAddress,Zip to regular pickup model.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812131631002_removed requied from time.resx">
-      <DependentUpon>201812131631002_removed requied from time.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812131855305_added special pickup model.resx">
-      <DependentUpon>201812131855305_added special pickup model.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812131954494_updated.resx">
+      <DependentUpon>201812131954494_updated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

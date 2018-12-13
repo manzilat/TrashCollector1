@@ -79,26 +79,23 @@ namespace TrashCollector1.Controllers
             return View(regularPickup);
         }
 
-       
+
         public ActionResult Delete(int id)
         {
-            return View();
+            RegularPickup regularPickup = db.RegularPickup.Find(id);
+            return View(regularPickup);
         }
 
-        // POST: RegularPickup/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        // POST: SuperHero/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirm(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            RegularPickup regularPickup = db.RegularPickup.Find(id);
+            db.RegularPickup.Remove(regularPickup);
+            db.SaveChanges();
+            return RedirectToAction("Index");
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

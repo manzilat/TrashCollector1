@@ -11,13 +11,8 @@ namespace TrashCollector1.Models
     {
         [Key]
         public int Id { get; set; }
-
-
-
         [Display(Name = "Pickup Day of Week")]
         public DayOfWeek PickupDayOfWeek { get; set; }
-
-        
         public string Time { get; set; }
         public string PickupAddress { get; set; }
         public string Zip { get; set; }
