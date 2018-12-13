@@ -299,10 +299,14 @@
     <Content Include="Views\SpecialPickup\Create.cshtml" />
     <Content Include="Views\SpecialPickup\Edit.cshtml" />
     <Content Include="Views\SpecialPickup\Delete.cshtml" />
+    <Content Include="Views\SuspendAccount\Index.cshtml" />
+    <Content Include="Views\SuspendAccount\Details.cshtml" />
+    <Content Include="Views\SuspendAccount\Create.cshtml" />
+    <Content Include="Views\SuspendAccount\Edit.cshtml" />
+    <Content Include="Views\SuspendAccount\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\SuspendAccount\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
