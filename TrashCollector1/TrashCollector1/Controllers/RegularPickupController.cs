@@ -74,7 +74,7 @@ namespace TrashCollector1.Controllers
                 regularPickups.Description = regularPickup.Description;
 
                 db.SaveChanges();
-                return RedirectToAction("Details", new { id = regularPickup.Id });
+                return RedirectToAction("Details", new { id = regularPickups.Id });
             }
             return View(regularPickup);
         }
