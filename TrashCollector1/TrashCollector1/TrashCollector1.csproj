@@ -212,6 +212,10 @@
     <Compile Include="Migrations\201812131954494_updated.Designer.cs">
       <DependentUpon>201812131954494_updated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812132215317_added few properties in customer model.cs" />
+    <Compile Include="Migrations\201812132215317_added few properties in customer model.Designer.cs">
+      <DependentUpon>201812132215317_added few properties in customer model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -304,6 +308,7 @@
     <Content Include="Views\SuspendAccount\Create.cshtml" />
     <Content Include="Views\SuspendAccount\Edit.cshtml" />
     <Content Include="Views\SuspendAccount\Delete.cshtml" />
+    <Content Include="Views\Customer\PayForService.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -327,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812131954494_updated.resx">
       <DependentUpon>201812131954494_updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812132215317_added few properties in customer model.resx">
+      <DependentUpon>201812132215317_added few properties in customer model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
