@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -18,9 +19,9 @@ namespace TrashCollector1.Controllers
         }
 
         // GET: RegularPickup/Details/5
-        public ActionResult Details(int? Id)
+        public ActionResult Details(int? id)
         {
-            RegularPickup regularpickup = db.RegularPickup.Find(Id);
+            RegularPickup regularpickup = db.RegularPickup.Find(id);
             return View(regularpickup);
         }
 
@@ -32,7 +33,7 @@ namespace TrashCollector1.Controllers
 
         // POST: RegularPickup/Create
         [HttpPost]
-        public ActionResult Create([Bind(Include = "PickupActive,PickupDayOfWeek,Description")] RegularPickup regularPickup)
+        public ActionResult Create([Bind(Include = "PickupDayOfWeek,Time,PickupAddress,Zip,Description")] RegularPickup regularPickup)
         {
             if (ModelState.IsValid)
             {
@@ -51,24 +52,60 @@ namespace TrashCollector1.Controllers
         // GET: RegularPickup/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            RegularPickup regularPickup = db.RegularPickup.Find(id);
+            return View(regularPickup);
         }
 
         // POST: RegularPickup/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit([Bind(Include = "PickupDayOfWeek,Time,PickupAddress,Zip,Description")] RegularPickup regularPickup, int id)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
+                RegularPickup regularPickups = db.RegularPickup.Find(id);
+                if (regularPickups == null)
+                {
+                    return RedirectToAction("DisplayError", "RegularPickup");
+                }
+                regularPickups.PickupDayOfWeek = regularPickup.PickupDayOfWeek;
+                regularPickups.Time = regularPickup.Time;
+                regularPickups.PickupAddress = regularPickup.PickupAddress;
+                regularPickups.Zip = regularPickup.Zip;
+                regularPickups.Description = regularPickup.Description;
 
-                return RedirectToAction("Index");
+                db.SaveChanges();
+                return RedirectToAction("Details", new { id = regularPickup.Id });
             }
-            catch
-            {
-                return View();
-            }
+            return View(regularPickup);
         }
+
+        //public ActionResult DetailsForWeeklyPickup(int? id)
+        //{
+
+        //    RegularPickup regularPickup = db.RegularPickup.Find(id);
+        //    return View(regularPickup);
+        //}
+        //[HttpPost]
+        //public ActionResult DetailsForWeeklyPickup([Bind(Include = "PickupDayOfWeek,Time,PickupAddress,Zip,Description")] RegularPickup regularPickup, int id)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        RegularPickup regularPickups = db.RegularPickup.Find(id);
+        //        if (regularPickups == null)
+        //        {
+        //            return RedirectToAction("DisplayError", "RegularPickup");
+        //        }
+        //        regularPickups.PickupDayOfWeek = regularPickup.PickupDayOfWeek;
+        //        regularPickups.Time = regularPickup.Time;
+        //        regularPickups.PickupAddress = regularPickup.PickupAddress;
+        //        regularPickups.Zip = regularPickup.Zip;
+        //        regularPickups.Description = regularPickup.Description;
+
+        //        db.SaveChanges();
+        //        return RedirectToAction("DetailsForWeeklyPickup", new { id = regularPickup.Id });
+        //    }
+        //    return View(regularPickup);
+        //}
 
         // GET: RegularPickup/Delete/5
         public ActionResult Delete(int id)

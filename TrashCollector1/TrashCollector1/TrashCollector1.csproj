@@ -234,6 +234,22 @@
     <Compile Include="Migrations\201812112043035_removed customer%27s foreign key.Designer.cs">
       <DependentUpon>201812112043035_removed customer%27s foreign key.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812121732062_updating.cs" />
+    <Compile Include="Migrations\201812121732062_updating.Designer.cs">
+      <DependentUpon>201812121732062_updating.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812131610376_updated regular pickup model.cs" />
+    <Compile Include="Migrations\201812131610376_updated regular pickup model.Designer.cs">
+      <DependentUpon>201812131610376_updated regular pickup model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812131627433_added Time,PickupAddress,Zip to regular pickup model.cs" />
+    <Compile Include="Migrations\201812131627433_added Time,PickupAddress,Zip to regular pickup model.Designer.cs">
+      <DependentUpon>201812131627433_added Time,PickupAddress,Zip to regular pickup model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812131631002_removed requied from time.cs" />
+    <Compile Include="Migrations\201812131631002_removed requied from time.Designer.cs">
+      <DependentUpon>201812131631002_removed requied from time.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountSuspend.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -312,6 +328,8 @@
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\RegularPickup\Create.cshtml" />
     <Content Include="Views\RegularPickup\Details.cshtml" />
+    <Content Include="Views\RegularPickup\Edit.cshtml" />
+    <Content Include="Views\RegularPickup\DetailsForWeeklyPickup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -353,6 +371,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812112043035_removed customer%27s foreign key.resx">
       <DependentUpon>201812112043035_removed customer%27s foreign key.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812121732062_updating.resx">
+      <DependentUpon>201812121732062_updating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812131610376_updated regular pickup model.resx">
+      <DependentUpon>201812131610376_updated regular pickup model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812131627433_added Time,PickupAddress,Zip to regular pickup model.resx">
+      <DependentUpon>201812131627433_added Time,PickupAddress,Zip to regular pickup model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812131631002_removed requied from time.resx">
+      <DependentUpon>201812131631002_removed requied from time.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

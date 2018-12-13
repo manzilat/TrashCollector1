@@ -51,7 +51,7 @@ namespace TrashCollector1.Controllers
             return View(customer);
         }
         // GET: Customer/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
 
             Customer customer = db.Customer.Find(id);
