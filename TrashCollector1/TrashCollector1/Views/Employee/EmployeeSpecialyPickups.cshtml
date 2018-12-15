@@ -1,0 +1,52 @@
+﻿@model IEnumerable<TrashCollector1.Models.RegularPickup>
+
+@{
+    ViewBag.Title = "Today's pickups";
+}
+
+<h2> You're List For Today</h2>
+
+
+<table class="table table-hover">
+    <tr class="table-primary">
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.Time)
+        </th>
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.PickupAddress)
+        </th>
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.Zip)
+        </th>
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        
+        <th scope="col">
+
+        </th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            @Html.HiddenFor(modelItem => item.ApplicationUserId)
+              <tr class="table-info">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PickupAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Zip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                
+                           </tr>
+            }
+        }
+
+    </table>

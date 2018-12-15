@@ -17,7 +17,7 @@ namespace TrashCollector1.Models
         public string State { get; set; }
         public string Zip { get; set; }
         public string City { get; set; }
-        public double? MoneyOwed { get; set; }
+        
         public bool? IsConfirmed { get; set; }
         [ForeignKey("ApplicationUser")]
         public string ApplicationUserId { get; set; }

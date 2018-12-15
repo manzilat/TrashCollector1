@@ -84,7 +84,7 @@ namespace TrashCollector1.Controllers
             return View(suspendAccount);
         }
 
-        // POST: SuperHero/Delete/5
+        // POST:SuspendAccount/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirm(int id)

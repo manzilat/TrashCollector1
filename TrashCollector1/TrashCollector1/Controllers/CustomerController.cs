@@ -12,9 +12,26 @@ namespace TrashCollector1.Controllers
     public class CustomerController : Controller
     {
         public ApplicationDbContext db = new ApplicationDbContext();
+
+        public Customer GetCustomer()
+        {
+            var customer = db.Customer.Where(x => x.ApplicationUserId == HttpContext.User.Identity.Name).FirstOrDefault();
+            return customer;
+        }
+
+        public CustomerAccount GetCustomerAccount()
+        {
+            var customer = GetCustomer();
+            var customerAccount = db.CustomerAccount.Where(x => x.CustomerAccountId == customer.Id).FirstOrDefault();
+            return customerAccount;
+        }
+
+
+
         // GET: Customer
         public ActionResult Index()
         {
+
             return View(db.Customer.ToList());
         }
 
@@ -39,7 +56,7 @@ namespace TrashCollector1.Controllers
         {
             if (ModelState.IsValid)
             {
-                customer.MoneyOwed = 0;
+               
                 var userId = User.Identity.GetUserId();
                 customer.ApplicationUserId = userId;
 
@@ -103,26 +120,10 @@ namespace TrashCollector1.Controllers
             return RedirectToAction("LogOff", "Account");
         }
 
-        public ActionResult PayForService()
-        {
-            var userId = User.Identity.GetUserId();
-            Customer customer = (from c in db.Customer where userId == c.ApplicationUserId select c).First();
+     
 
-            return View(customer);
-        }
 
-        public ActionResult PayForServiceConfirmed(string id)
-        {
-            Customer customer = (from c in db.Customer where c.ApplicationUserId == id select c).First();
-
-            customer.IsConfirmed = false;
-            customer.MoneyOwed = 0;
-
-            db.Entry(customer).State = EntityState.Modified;
-            db.SaveChanges();
-
-            return View(customer);
-        }
+       
 
         protected override void Dispose(bool disposing)
         {

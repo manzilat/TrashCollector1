@@ -35,6 +35,8 @@ namespace TrashCollector1.Models
         public DbSet<RegularPickup> RegularPickup { get; set; }
         public DbSet<SpecialPickup> SpecialPickup { get; set; }
         public DbSet<SuspendAccount> SuspendAccount { get; set; }
+        public DbSet<CustomerAccount> CustomerAccount { get; set; }
+
 
 
 
