@@ -199,9 +199,6 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\RegularPickupController.cs" />
-    <Compile Include="Controllers\SpecialPickupController.cs" />
-    <Compile Include="Controllers\SuspendAccountController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -221,6 +218,14 @@
     <Compile Include="Migrations\201812142117334_updating.Designer.cs">
       <DependentUpon>201812142117334_updating.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812171641180_removed models.cs" />
+    <Compile Include="Migrations\201812171641180_removed models.Designer.cs">
+      <DependentUpon>201812171641180_removed models.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812171706226_made nullables.cs" />
+    <Compile Include="Migrations\201812171706226_made nullables.Designer.cs">
+      <DependentUpon>201812171706226_made nullables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -228,9 +233,6 @@
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\RegularPickup.cs" />
-    <Compile Include="Models\SpecialPickup.cs" />
-    <Compile Include="Models\SuspendAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -295,31 +297,23 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Customer\Index.cshtml" />
-    <Content Include="Views\Customer\Create.cshtml" />
-    <Content Include="Views\Customer\Edit.cshtml" />
-    <Content Include="Views\Customer\Delete.cshtml" />
-    <Content Include="Views\Customer\Details.cshtml" />
-    <Content Include="Views\RegularPickup\Create.cshtml" />
-    <Content Include="Views\RegularPickup\Details.cshtml" />
-    <Content Include="Views\RegularPickup\Edit.cshtml" />
-    <Content Include="Views\RegularPickup\DetailsForWeeklyPickup.cshtml" />
-    <Content Include="Views\SpecialPickup\Index.cshtml" />
-    <Content Include="Views\SpecialPickup\Details.cshtml" />
-    <Content Include="Views\SpecialPickup\Create.cshtml" />
-    <Content Include="Views\SpecialPickup\Edit.cshtml" />
-    <Content Include="Views\SpecialPickup\Delete.cshtml" />
-    <Content Include="Views\SuspendAccount\Index.cshtml" />
-    <Content Include="Views\SuspendAccount\Details.cshtml" />
-    <Content Include="Views\SuspendAccount\Create.cshtml" />
-    <Content Include="Views\SuspendAccount\Edit.cshtml" />
-    <Content Include="Views\SuspendAccount\Delete.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\Details.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
     <Content Include="Views\Employee\Delete.cshtml" />
     <Content Include="Views\Employee\EmployeeSpecialyPickups.cshtml" />
+    <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Customer\Details.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\CreateRegularPickup.cshtml" />
+    <Content Include="Views\Customer\DetailsOfPickup.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\EditRegularPickup.cshtml" />
+    <Content Include="Views\Customer\CreateSpecialPickup.cshtml" />
+    <Content Include="Views\Customer\DetailsOfSpecialPickup.cshtml" />
+    <Content Include="Views\Customer\CreateSuspendAccount.cshtml" />
+    <Content Include="Views\Customer\DetailsOfSuspendedAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -349,6 +343,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812142117334_updating.resx">
       <DependentUpon>201812142117334_updating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812171641180_removed models.resx">
+      <DependentUpon>201812171641180_removed models.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812171706226_made nullables.resx">
+      <DependentUpon>201812171706226_made nullables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

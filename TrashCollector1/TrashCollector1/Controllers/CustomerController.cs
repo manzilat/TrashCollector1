@@ -12,39 +12,37 @@ namespace TrashCollector1.Controllers
     public class CustomerController : Controller
     {
         public ApplicationDbContext db = new ApplicationDbContext();
-
-        public Customer GetCustomer()
-        {
-            var customer = db.Customer.Where(x => x.ApplicationUserId == HttpContext.User.Identity.Name).FirstOrDefault();
-            return customer;
-        }
-
-        public CustomerAccount GetCustomerAccount()
-        {
-            var customer = GetCustomer();
-            var customerAccount = db.CustomerAccount.Where(x => x.CustomerAccountId == customer.Id).FirstOrDefault();
-            return customerAccount;
-        }
-
-
-
         // GET: Customer
         public ActionResult Index()
         {
 
             return View(db.Customer.ToList());
         }
-
-        // GET: Customer/Details/5
-        public ActionResult Details(int? id )
+        public ActionResult Details(int? id)
         {
-           
-            Customer customer = db.Customer.Find(id);
-  
+            Customer customer = null;
+            if (id == null)
+            {
+                // return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
+                var FoundUserId = User.Identity.GetUserId();
+
+                customer = db.Customer.Where(c => c.ApplicationUserId == FoundUserId).FirstOrDefault();
+                return View(customer);
+
+            }
+
+            else
+            {
+                customer = db.Customer.Find(id);
+            }
+
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
             return View(customer);
         }
-
         // GET: Customer/Create
         public ActionResult Create()
         {
@@ -56,16 +54,74 @@ namespace TrashCollector1.Controllers
         {
             if (ModelState.IsValid)
             {
-               
+
                 var userId = User.Identity.GetUserId();
                 customer.ApplicationUserId = userId;
 
                 db.Customer.Add(customer);
                 db.SaveChanges();
-                return RedirectToAction("Details", new { id = customer.Id }); 
+                return RedirectToAction("Details", new { id = customer.Id });
             }
 
 
+            return View(customer);
+        }
+        public ActionResult CreateRegularPickup()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CreateRegularPickup([Bind(Include = " PickupDayOfWeek,Time,Description")] Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+
+                var userId = User.Identity.GetUserId();
+                customer.ApplicationUserId = userId;
+        
+                db.Customer.Add(customer);
+                db.SaveChanges();
+                return RedirectToAction("DetailsOfPickup", new { id = customer.Id });
+            }
+
+
+            return View(customer);
+        }
+
+        //public ActionResult DetailsOfPickup(int? id)
+        //{
+
+        //    Customer customer = db.Customer.Find(id);
+
+
+        //    return View(customer);
+        //}
+
+
+
+        public ActionResult DetailsOfPickup(int? id)
+        {
+            Customer customer = null;
+            if (id == null)
+            {
+                // return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+                var FoundUserId = User.Identity.GetUserId();
+
+                customer = db.Customer.Where(c => c.ApplicationUserId == FoundUserId).FirstOrDefault();
+                return View(customer);
+
+            }
+
+            else
+            {
+                customer = db.Customer.Find(id);
+            }
+
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
             return View(customer);
         }
         // GET: Customer/Edit/5
@@ -78,10 +134,11 @@ namespace TrashCollector1.Controllers
         }
         // POST: Customer/Edit/5
         [HttpPost]
-        public ActionResult Edit([Bind(Include = " Id,FullName,Phone,Street,State,City,Zip")] Customer customer,int id)
+        public ActionResult Edit([Bind(Include = " Id,FullName,Phone,Street,State,City,Zip")] Customer customer, int id)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
+
                 Customer updatedCustomer = db.Customer.Find(id);
                 if (updatedCustomer == null)
                 {
@@ -100,39 +157,87 @@ namespace TrashCollector1.Controllers
             return View(customer);
         }
 
-        // GET: Customer/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult EditRegularPickup(int? id)
+        {
+
+            Customer customer = db.Customer.Find(id);
+
+            return View(customer);
+        }
+        // POST: Customer/Edit/5
+        [HttpPost]
+        public ActionResult EditRegularPickup([Bind(Include = " PickupDayOfWeek,Time,Description")] Customer customer, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                Customer updatedCustomer = db.Customer.Find(id);
+                if (updatedCustomer == null)
+                {
+                    return RedirectToAction("DisplayError", "Customer");
+                }
+                updatedCustomer.PickupDayOfWeek = customer.PickupDayOfWeek;
+                updatedCustomer.Time = customer.Time;
+                updatedCustomer.Description = customer.Description;
+               
+                db.Entry(updatedCustomer).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("DetailsOfPickup");
+            }
+            return View(customer);
+        }
+
+        public ActionResult CreateSpecialPickup()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CreateSpecialPickup([Bind(Include = "SpecialPickupDate,Time,Street,State,City,Zip,Description")]Customer customer )
+        {
+            if(ModelState.IsValid)
+            {
+
+                var userId = User.Identity.GetUserId();
+                customer.ApplicationUserId = userId;
+
+                db.Customer.Add(customer);
+                db.SaveChanges();
+                return RedirectToAction("DetailsOfSpecialPickup", new { id = customer.Id });
+            }
+
+
+            return View(customer);
+        }
+        public ActionResult DetailsOfSpecialPickup(int? id)
         {
             Customer customer = db.Customer.Find(id);
             return View(customer);
         }
+        public ActionResult CreateSuspendAccount()
+        {
+            return View();
+        }
+        // POST: Customer/Create
+        [HttpPost]
+        public ActionResult CreateSuspendAccount([Bind(Include = " AccountSuspendDate,AccountSuspendEndDate")] Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
 
-        // POST: Customer/Delete/5
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
+                var userId = User.Identity.GetUserId();
+                customer.ApplicationUserId = userId;
 
+                db.Customer.Add(customer);
+                db.SaveChanges();
+                return RedirectToAction("DetailsOfSuspendedAccount", new { id = customer.Id });
+            }
+
+
+            return View(customer);
+        }
+        public ActionResult DetailsOfSuspendedAccount(int? id)
         {
             Customer customer = db.Customer.Find(id);
-            customer.FullName = "Deleted";
-            db.Entry(customer).State = EntityState.Modified;
-            db.SaveChanges();
-
-            return RedirectToAction("LogOff", "Account");
+            return View(customer);
         }
-
-     
-
-
-       
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
     }
 }

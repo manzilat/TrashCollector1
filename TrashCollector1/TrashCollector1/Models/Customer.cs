@@ -19,21 +19,37 @@ namespace TrashCollector1.Models
         public string City { get; set; }
         
         public bool? IsConfirmed { get; set; }
+        //Regular pickup
+        [Display(Name = "Pickup Day of Week")]
+        public DayOfWeek PickupDayOfWeek { get; set; }
+        public string Time { get; set; }
+      
+        [Display(Name = "Description")]
+        public String Description { get; set; }
+
+        //special pickup
+        [Display(Name = "Special Pickup Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? SpecialPickupDate { get; set; }
+
+        //Suspend Account
+        [Display(Name = "Account Suspend Start Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? AccountSuspendDate { get; set; }
+
+        [Display(Name = "Account Suspend End Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? AccountSuspendEndDate { get; set; }
+        [Display(Name = "Was trash collected?")]
+        public bool PickupCompleted { get; set; }
         [ForeignKey("ApplicationUser")]
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
 
-        [ForeignKey("RegularPickup")]
-        public int? RegularPickupId { get; set; }
-        public RegularPickup RegularPickup { get; set; }
-
-        [ForeignKey("SpecialPickup")]
-        public int? SpecialPickupId { get; set; }
-        public SpecialPickup SpecialPickup { get; set; }
-
-        [ForeignKey("SuspendAccount")]
-        public int? SuspendAccoutId { get; set; }
-        public SuspendAccount SuspendAccount { get; set; }
+       
 
 
     }

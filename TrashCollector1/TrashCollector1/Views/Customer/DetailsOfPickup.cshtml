@@ -1,15 +1,17 @@
-﻿@model TrashCollector1.Models.RegularPickup
+﻿@model TrashCollector1.Models.Customer
 
 @{
-    ViewBag.Title = "DetailsForWeeklyPickup";
+    ViewBag.Title = "DetailsOfPickup";
 }
 
-<h2>DetailsForWeeklyPickup</h2>
+<h2>Regular Trash Pickup</h2>
+
 
 <div>
-    <h4>RegularPickup</h4>
+    <h4>Customer</h4>
     <hr />
     <dl class="dl-horizontal">
+
         <dt>
             @Html.DisplayNameFor(model => model.PickupDayOfWeek)
         </dt>
@@ -24,20 +26,7 @@
         <dd>
             @Html.DisplayFor(model => model.Time)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PickupAddress)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PickupAddress)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Zip)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Zip)
-        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Description)
         </dt>
@@ -46,7 +35,16 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
 
-        @Html.HiddenFor(model => model.ApplicationUserId)
+
 
     </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
 </div>
