@@ -121,11 +121,11 @@ namespace TrashCollector1.Controllers
 
 
         }
-        public ActionResult FilterWeekday()
+        public ActionResult FilterByWeekday()
         {
             return View();
         }
-        [HttpPost, ActionName("FilterWeekday")]
+        [HttpPost, ActionName("FilterByWeekday")]
         public ActionResult FilterByWeekday(string chosenDay)
         {
             return RedirectToAction("SelectWeekday", new { day = chosenDay });
