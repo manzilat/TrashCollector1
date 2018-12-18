@@ -101,8 +101,8 @@ namespace TrashCollector1.Controllers
             var currentEmployee = (from e in db.Employee where e.ApplicationUserId == userId select e).FirstOrDefault();
             var PickupDay = DateTime.Now.DayOfWeek.ToString();
             var PresentDate = DateTime.Now.Date;
-            var customerMatchingZip = (from c in db.Customer where c.Zip == currentEmployee.Zip select c).ToList();
-            if (!customerMatchingZip.Any())
+            var customerZip = (from c in db.Customer where c.Zip == currentEmployee.Zip select c).ToList();
+            if (!customerZip.Any())
             {
                 return View();
             }
@@ -119,8 +119,46 @@ namespace TrashCollector1.Controllers
                 }
             }
 
+
+        }
+        public ActionResult FilterWeekday()
+        {
+            return View();
+        }
+        [HttpPost, ActionName("FilterWeekday")]
+        public ActionResult FilterByWeekday(string chosenDay)
+        {
+            return RedirectToAction("SelectWeekday", new { day = chosenDay });
+        }
+        public ActionResult SelectWeekday(string day)
+        {
+            List<Customer> PerticularDayCustomer = new List<Customer>();
+            var userId = User.Identity.GetUserId();
+            var currentEmployee = (from e in db.Employee where e.ApplicationUserId == userId select e).FirstOrDefault();
+            var customerZip = (from c in db.Customer where c.Zip == currentEmployee.Zip select c).ToList();
+            if (customerZip.Any())
+              
+            {
+                foreach (var customer in customerZip)
+                {
+                    var pickupDateString = customer.SpecialPickupDate.ToString();
+                    string specificDatePickup = null;
+                    if (pickupDateString != "")
+                    {
+                        specificDatePickup = DateTime.Parse(pickupDateString).DayOfWeek.ToString();
+                    }
+                    if ((customer.PickupDayOfWeek.ToString() == day || specificDatePickup == day))
+
+                    {
+                        PerticularDayCustomer.Add(customer);
+                    }
+                }
+            }
+            ViewBag.dayToSee = day;
+            return View(PerticularDayCustomer);
         }
     }
+
 }
 
 

@@ -194,13 +194,7 @@ namespace TrashCollector1.Controllers
         }
 
 
-        //public ActionResult DetailsOfSpecialPickup(int? Id)
-        //{
-        //    Customer customer = db.Customer.Find(Id);
-        //    return View(customer);
-        //}
-        //////////////////////////////////////////////////////////////////
-        /// <summary>
+   
         public ActionResult EditSpecialPickup(int? id)
         {
 

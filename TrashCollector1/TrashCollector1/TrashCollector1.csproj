@@ -314,6 +314,8 @@
     <Content Include="Views\Customer\CreateSuspendAccount.cshtml" />
     <Content Include="Views\Customer\DetailsOfSuspendedAccount.cshtml" />
     <Content Include="Views\Employee\EmployeeTodayPickups.cshtml" />
+    <Content Include="Views\Employee\FiltereByWeekday.cshtml" />
+    <Content Include="Views\Employee\SelectWeekday.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
