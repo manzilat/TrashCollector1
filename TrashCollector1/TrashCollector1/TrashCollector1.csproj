@@ -302,7 +302,6 @@
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
     <Content Include="Views\Employee\Delete.cshtml" />
-    <Content Include="Views\Employee\EmployeeSpecialyPickups.cshtml" />
     <Content Include="Views\Customer\Create.cshtml" />
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
@@ -314,6 +313,7 @@
     <Content Include="Views\Customer\DetailsOfSpecialPickup.cshtml" />
     <Content Include="Views\Customer\CreateSuspendAccount.cshtml" />
     <Content Include="Views\Customer\DetailsOfSuspendedAccount.cshtml" />
+    <Content Include="Views\Employee\EmployeeTodayPickups.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

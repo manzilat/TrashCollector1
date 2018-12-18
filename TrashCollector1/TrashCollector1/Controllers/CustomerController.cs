@@ -78,8 +78,10 @@ namespace TrashCollector1.Controllers
 
                 var userId = User.Identity.GetUserId();
                 customer.ApplicationUserId = userId;
-        
-                db.Customer.Add(customer);
+                var currentCstomer = (from c in db.Customer where c.ApplicationUserId == userId select c).FirstOrDefault();//added test 
+                currentCstomer.PickupDayOfWeek = customer.PickupDayOfWeek;
+                currentCstomer.Time = customer.Time;
+                currentCstomer.Description = customer.Description;
                 db.SaveChanges();
                 return RedirectToAction("DetailsOfPickup", new { id = customer.Id });
             }
@@ -88,42 +90,14 @@ namespace TrashCollector1.Controllers
             return View(customer);
         }
 
-        //public ActionResult DetailsOfPickup(int? id)
-        //{
-
-        //    Customer customer = db.Customer.Find(id);
-
-
-        //    return View(customer);
-        //}
-
-
-
-        public ActionResult DetailsOfPickup(int? id)
+        public ActionResult DetailsOfPickup()
         {
-            Customer customer = null;
-            if (id == null)
-            {
-                // return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-                var FoundUserId = User.Identity.GetUserId();
-
-                customer = db.Customer.Where(c => c.ApplicationUserId == FoundUserId).FirstOrDefault();
-                return View(customer);
-
-            }
-
-            else
-            {
-                customer = db.Customer.Find(id);
-            }
-
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
+            var FoundUserId = User.Identity.GetUserId();
+            Customer customer = db.Customer.Where(c => c.ApplicationUserId == FoundUserId).FirstOrDefault();
             return View(customer);
         }
+
         // GET: Customer/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -191,15 +165,18 @@ namespace TrashCollector1.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CreateSpecialPickup([Bind(Include = "SpecialPickupDate,Time,Street,State,City,Zip,Description")]Customer customer )
+        public ActionResult CreateSpecialPickup([Bind(Include = "SpecialPickupDate,Time,Description")]Customer customer )
         {
             if(ModelState.IsValid)
             {
 
                 var userId = User.Identity.GetUserId();
                 customer.ApplicationUserId = userId;
+                var currentCstomer = (from c in db.Customer where c.ApplicationUserId == userId select c).FirstOrDefault();//
+                currentCstomer.SpecialPickupDate = customer.SpecialPickupDate;
+                currentCstomer.Time = customer.Time;
+                
 
-                db.Customer.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("DetailsOfSpecialPickup", new { id = customer.Id });
             }
@@ -225,8 +202,9 @@ namespace TrashCollector1.Controllers
 
                 var userId = User.Identity.GetUserId();
                 customer.ApplicationUserId = userId;
-
-                db.Customer.Add(customer);
+                var currentCstomer = (from c in db.Customer where c.ApplicationUserId == userId select c).FirstOrDefault();
+                currentCstomer.AccountSuspendDate = customer.AccountSuspendDate;
+                currentCstomer.AccountSuspendEndDate = customer.AccountSuspendEndDate;
                 db.SaveChanges();
                 return RedirectToAction("DetailsOfSuspendedAccount", new { id = customer.Id });
             }

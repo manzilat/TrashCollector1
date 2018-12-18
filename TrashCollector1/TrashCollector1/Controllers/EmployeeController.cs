@@ -35,14 +35,14 @@ namespace TrashCollector1.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+
                 var userId = User.Identity.GetUserId();
                 var currentUser = (from u in db.Users where u.Id == userId select u).First();
                 employee.ApplicationUserId = userId;
 
                 db.Employee.Add(employee);
                 db.SaveChanges();
-                return RedirectToAction("EmployeeSpecialyPickups", new { id = employee.Id });
+                return RedirectToAction("EmployeeTodayPickups", new { id = employee.Id });
             }
 
 
@@ -95,39 +95,35 @@ namespace TrashCollector1.Controllers
             return RedirectToAction("Home");
 
         }
-        ///******************************
-   
-        //public ActionResult EmployeeSpecialyPickups()
-        //{
-        //    var userId = User.Identity.GetUserId();
-        //    var currentEmployee = (from e in db.Employee where e.ApplicationUserId == userId select e).FirstOrDefault();
-        //    var ifWeeklyPickup = DateTime.Now.DayOfWeek.ToString();
-        //    var specialPickup = DateTime.Now.Date ;
-          
-        //    var customersMatchingZip = (from c in db.Customer where c.Zip == currentEmployee.Zip select c).ToList();
-        //    if (!customersMatchingZip.Any())
-        //    {
-        //        return View();
-        //    }
-        //    else
-        //    {
-        //        var checkSpecialPickups = db.SpecialPickup.Where(c => (c.PickupDate == specialPickup  && c.Zip == currentEmployee.Zip));
-           
-        //    if (!checkSpecialPickups.Any())
-        //    {
-        //        return View();
-        //    }
-        //    else
-        //    {
-        //        return View(checkSpecialPickups);
-        //    }
-        //}
+        public ActionResult EmployeeTodayPickups()
+        {
+            var userId = User.Identity.GetUserId();
+            var currentEmployee = (from e in db.Employee where e.ApplicationUserId == userId select e).FirstOrDefault();
+            var PickupDay = DateTime.Now.DayOfWeek.ToString();
+            var PresentDate = DateTime.Now.Date;
+            var customersMatchingZip = (from c in db.Customer where c.Zip == currentEmployee.Zip select c).ToList();
+            if (!customersMatchingZip.Any())
+            {
+                return View();
+            }
+            else
+            {
+                var checkPickup = db.Customer.Where(c => (c.SpecialPickupDate == PresentDate || c.PickupDayOfWeek.ToString() == PickupDay) && c.Zip == currentEmployee.Zip).ToList();
+                if (!checkPickup.Any())
+                {
+                    return View();
+                }
+                else
+                {
+                    return View(checkPickup);
+                }
+            }
+
+        }
     }
+}
 
 
 
 
-
-
-
-    }
+    
