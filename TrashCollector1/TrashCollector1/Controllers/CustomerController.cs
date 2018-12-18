@@ -112,7 +112,7 @@ namespace TrashCollector1.Controllers
         {
             if (ModelState.IsValid)
             {
-
+               
                 Customer updatedCustomer = db.Customer.Find(id);
                 if (updatedCustomer == null)
                 {
@@ -184,12 +184,54 @@ namespace TrashCollector1.Controllers
 
             return View(customer);
         }
-        public ActionResult DetailsOfSpecialPickup(int? id)
+
+        public ActionResult DetailsOfSpecialPickup()
         {
-            Customer customer = db.Customer.Find(id);
+
+            var FoundUserId = User.Identity.GetUserId();
+            Customer customer = db.Customer.Where(c => c.ApplicationUserId == FoundUserId).FirstOrDefault();
             return View(customer);
         }
-        public ActionResult CreateSuspendAccount()
+
+
+        //public ActionResult DetailsOfSpecialPickup(int? Id)
+        //{
+        //    Customer customer = db.Customer.Find(Id);
+        //    return View(customer);
+        //}
+        //////////////////////////////////////////////////////////////////
+        /// <summary>
+        public ActionResult EditSpecialPickup(int? id)
+        {
+
+            Customer customer = db.Customer.Find(id);
+
+            return View(customer);
+    }
+    // POST: Customer/Edit/5
+    [HttpPost]
+    public ActionResult EditSpecialPickup([Bind(Include = " SpecialPickupDate,Time,Description")] Customer customer, int id)
+    {
+        if (ModelState.IsValid)
+        {
+            Customer updatedCustomer = db.Customer.Find(id);
+            if (updatedCustomer == null)
+            {
+                return RedirectToAction("DisplayError", "Customer");
+            }
+            updatedCustomer.SpecialPickupDate = customer.SpecialPickupDate;
+            updatedCustomer.Time = customer.Time;
+            updatedCustomer.Description = customer.Description;
+
+            db.Entry(updatedCustomer).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("DetailsOfSpecialPickup");
+        }
+        return View(customer);
+    }
+    /// </summary>
+    /// <returns></returns>
+    public ActionResult CreateSuspendAccount()
         {
             return View();
         }

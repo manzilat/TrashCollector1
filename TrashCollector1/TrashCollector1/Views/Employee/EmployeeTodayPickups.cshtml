@@ -4,104 +4,100 @@
     ViewBag.Title = "EmployeeTodayPickups";
 }
 
-<h2>EmployeeTodayPickups</h2>
+<h2>Employee Today Pickups</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
+
+<table class="table table-hover">
+    <tr class="table-primary">
+        <th scope="col">
             @Html.DisplayNameFor(model => model.FullName)
         </th>
-        <th>
+        <th scope="col">
             @Html.DisplayNameFor(model => model.Phone)
         </th>
-        <th>
+        <th scope="col">
             @Html.DisplayNameFor(model => model.Street)
         </th>
-        <th>
+        <th scope="col">
             @Html.DisplayNameFor(model => model.State)
         </th>
-        <th>
+        <th scope="col">
             @Html.DisplayNameFor(model => model.Zip)
         </th>
-        <th>
+        <th scope="col">
             @Html.DisplayNameFor(model => model.City)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsConfirmed)
-        </th>
-        <th>
+
+        <th scope="col">
             @Html.DisplayNameFor(model => model.Time)
         </th>
-        <th>
+        <th scope="col">
             @Html.DisplayNameFor(model => model.Description)
         </th>
-        <th>
+        <th scope="col">
             @Html.DisplayNameFor(model => model.SpecialPickupDate)
         </th>
-        <th>
+        <th scope="col">
             @Html.DisplayNameFor(model => model.AccountSuspendDate)
         </th>
-        <th>
+        <th scope="col">
             @Html.DisplayNameFor(model => model.AccountSuspendEndDate)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PickupCompleted)
-        </th>
-       
+
+
         <th></th>
     </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr class="table-info">
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Street)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Zip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Street)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.State)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Zip)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsConfirmed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Time)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SpecialPickupDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AccountSuspendDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AccountSuspendEndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PickupCompleted)
-        </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SpecialPickupDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountSuspendDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountSuspendEndDate)
+                </td>
+
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
         
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
 
+
+    }
+
+    }
 </table>

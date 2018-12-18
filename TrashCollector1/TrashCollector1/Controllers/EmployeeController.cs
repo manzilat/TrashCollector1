@@ -49,20 +49,20 @@ namespace TrashCollector1.Controllers
             return View(employee);
         }
 
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? Id)
         {
 
-            Employee employee = db.Employee.Find(id);
+            Employee employee = db.Employee.Find(Id);
 
             return View(employee);
         }
 
         [HttpPost]
-        public ActionResult Edit([Bind(Include = " Id,FullName,Phone,Street,State,City,Zip")] Employee employee, int id)
+        public ActionResult Edit([Bind(Include = " Id,FullName,Phone,Street,State,City,Zip")] Employee employee, int Id)
         {
             if (ModelState.IsValid)
             {
-                Employee employees = db.Employee.Find(id);
+                Employee employees = db.Employee.Find(Id);
                 if (employees == null)
                 {
                     return RedirectToAction("DisplayError", "Employee");
@@ -80,16 +80,16 @@ namespace TrashCollector1.Controllers
             return View(employee);
         }
 
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? Id)
         {
-            Employee employee = db.Employee.Find(id);
+            Employee employee = db.Employee.Find(Id);
             return View(employee);
         }
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirm(int id)
+        public ActionResult DeleteConfirm(int Id)
         {
-            Employee employee = db.Employee.Find(id);
+            Employee employee = db.Employee.Find(Id);
             db.Employee.Remove(employee);
             db.SaveChanges();
             return RedirectToAction("Home");
@@ -101,8 +101,8 @@ namespace TrashCollector1.Controllers
             var currentEmployee = (from e in db.Employee where e.ApplicationUserId == userId select e).FirstOrDefault();
             var PickupDay = DateTime.Now.DayOfWeek.ToString();
             var PresentDate = DateTime.Now.Date;
-            var customersMatchingZip = (from c in db.Customer where c.Zip == currentEmployee.Zip select c).ToList();
-            if (!customersMatchingZip.Any())
+            var customerMatchingZip = (from c in db.Customer where c.Zip == currentEmployee.Zip select c).ToList();
+            if (!customerMatchingZip.Any())
             {
                 return View();
             }
