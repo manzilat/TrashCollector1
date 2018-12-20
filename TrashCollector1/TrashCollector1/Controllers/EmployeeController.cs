@@ -15,10 +15,37 @@ namespace TrashCollector1.Controllers
         // GET: Employee
         public ActionResult Index()
         {
-            return View(db.Employee.ToList());
+            return View(db.Customer.ToList());
+        }
+        public double? Payment(Customer customer)
+        {
+            customer.Fee = customer.Fee + 5;
+            var money = customer.Fee;
+            return money;
         }
 
-        public ActionResult Details(int? id)
+
+        public ActionResult MakePayment(string id)
+        {
+            Customer customer = db.Customer.Find(id);
+            return View(customer);
+        }
+        [HttpPost, ActionName("MakePayment")]
+        public ActionResult MakePayment(int id )
+        {
+            var userId = User.Identity.GetUserId();
+            //customer.ApplicationUserId = userId;
+            var currentCustomer = (from c in db.Customer where c.ApplicationUserId == userId select c).FirstOrDefault();
+            var fee = Payment(currentCustomer);
+            if (currentCustomer != null) currentCustomer.Fee = fee;
+            {
+                currentCustomer.SpecialPickupDate = null;
+            }
+            db.Entry(currentCustomer).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("EmployeeTodayPickups");
+        }
+            public ActionResult Details(int? id)
         {
 
             Employee employee = db.Employee.Find(id);
@@ -137,7 +164,7 @@ namespace TrashCollector1.Controllers
             var currentEmployee = (from e in db.Employee where e.ApplicationUserId == userId select e).FirstOrDefault();
             var customerZip = (from c in db.Customer where c.Zip == currentEmployee.Zip select c).ToList();
             if (customerZip.Any())
-              
+
             {
                 foreach (var customer in customerZip)
                 {
@@ -157,7 +184,54 @@ namespace TrashCollector1.Controllers
             ViewBag.dayToSee = day;
             return View(PerticularDayCustomer);
         }
+
+
+
+
+        public ActionResult ConfirmPickup(int? id)
+        {
+
+            Customer customer = db.Customer.Find(id);
+
+            return View(customer);
+        }
+        // POST: Customer/Edit/5
+        [HttpPost]
+        public ActionResult ConfirmPickup([Bind(Include = " IsConfirmed")] Customer customer, int id)
+        {
+            if (ModelState.IsValid)
+            {
+
+                Customer updatedCustomer = db.Customer.Find(id);
+                if (updatedCustomer == null)
+                {
+                    return RedirectToAction("DisplayError", "Customer");
+                }
+                updatedCustomer.IsConfirmed = customer.IsConfirmed;
+               
+                db.Entry(updatedCustomer).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("EmployeeTodayPickups");
+            }
+            return View(customer);
+        }
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

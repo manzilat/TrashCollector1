@@ -45,6 +45,7 @@ namespace TrashCollector1.Models
         public DateTime? AccountSuspendEndDate { get; set; }
         [Display(Name = "Was trash collected?")]
         public bool PickupCompleted { get; set; }
+        public double? Fee { get; set; }
         [ForeignKey("ApplicationUser")]
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }

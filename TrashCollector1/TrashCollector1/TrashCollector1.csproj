@@ -226,6 +226,10 @@
     <Compile Include="Migrations\201812171706226_made nullables.Designer.cs">
       <DependentUpon>201812171706226_made nullables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812200247384_added fee property to customer model.cs" />
+    <Compile Include="Migrations\201812200247384_added fee property to customer model.Designer.cs">
+      <DependentUpon>201812200247384_added fee property to customer model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -316,6 +320,8 @@
     <Content Include="Views\Employee\EmployeeTodayPickups.cshtml" />
     <Content Include="Views\Employee\FilterByWeekday.cshtml" />
     <Content Include="Views\Employee\SelectWeekday.cshtml" />
+    <Content Include="Views\Employee\ConfirmPickup.cshtml" />
+    <Content Include="Views\Employee\MakePayment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -351,6 +357,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812171706226_made nullables.resx">
       <DependentUpon>201812171706226_made nullables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812200247384_added fee property to customer model.resx">
+      <DependentUpon>201812200247384_added fee property to customer model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
