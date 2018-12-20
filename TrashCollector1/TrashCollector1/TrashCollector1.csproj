@@ -322,6 +322,7 @@
     <Content Include="Views\Employee\SelectWeekday.cshtml" />
     <Content Include="Views\Employee\ConfirmPickup.cshtml" />
     <Content Include="Views\Employee\MakePayment.cshtml" />
+    <Content Include="Views\Employee\CustomerOnMap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

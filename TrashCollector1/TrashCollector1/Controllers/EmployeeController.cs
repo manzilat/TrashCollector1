@@ -17,35 +17,8 @@ namespace TrashCollector1.Controllers
         {
             return View(db.Customer.ToList());
         }
-        public double? Payment(Customer customer)
-        {
-            customer.Fee = customer.Fee + 5;
-            var money = customer.Fee;
-            return money;
-        }
 
-
-        public ActionResult MakePayment(string id)
-        {
-            Customer customer = db.Customer.Find(id);
-            return View(customer);
-        }
-        [HttpPost, ActionName("MakePayment")]
-        public ActionResult MakePayment(int id )
-        {
-            var userId = User.Identity.GetUserId();
-            //customer.ApplicationUserId = userId;
-            var currentCustomer = (from c in db.Customer where c.ApplicationUserId == userId select c).FirstOrDefault();
-            var fee = Payment(currentCustomer);
-            if (currentCustomer != null) currentCustomer.Fee = fee;
-            {
-                currentCustomer.SpecialPickupDate = null;
-            }
-            db.Entry(currentCustomer).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("EmployeeTodayPickups");
-        }
-            public ActionResult Details(int? id)
+        public ActionResult Details(int? id)
         {
 
             Employee employee = db.Employee.Find(id);
@@ -208,7 +181,7 @@ namespace TrashCollector1.Controllers
                     return RedirectToAction("DisplayError", "Customer");
                 }
                 updatedCustomer.IsConfirmed = customer.IsConfirmed;
-               
+
                 db.Entry(updatedCustomer).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("EmployeeTodayPickups");
@@ -216,24 +189,56 @@ namespace TrashCollector1.Controllers
             return View(customer);
         }
 
+
+        public ActionResult CustomerOnMap(string id)
+        {
+            var userId = User.Identity.GetUserId();
+            var currentEmployee = (from e in db.Employee where e.ApplicationUserId == userId select e).FirstOrDefault();
+            var employeeZip = currentEmployee.Zip;
+            ViewBag.zip = employeeZip;
+            var PickupDay = DateTime.Now.DayOfWeek.ToString();
+            var PresentDate = DateTime.Now.Date;
+            var customerZip = (from c in db.Customer where c.Zip == currentEmployee.Zip select c).ToList();
+            if (id!= null)
+            {
+                var customer = (from c in db.Customer where c.Zip == currentEmployee.Zip select c).ToList();
+                return View(customer);
+            }
+            if (!customerZip.Any())
+            {
+                return View();
+            }
+            else
+            {
+                var checkPickup = db.Customer.Where(c => (c.SpecialPickupDate == PresentDate || c.PickupDayOfWeek.ToString() == PickupDay) && c.Zip == currentEmployee.Zip).ToList();
+                if (!checkPickup.Any())
+                {
+                    return View();
+                }
+                else
+                {
+                    return View(checkPickup);
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
+
 
 
 

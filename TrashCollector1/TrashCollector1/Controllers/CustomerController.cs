@@ -12,6 +12,34 @@ namespace TrashCollector1.Controllers
     public class CustomerController : Controller
     {
         public ApplicationDbContext db = new ApplicationDbContext();
+        public double? Payment(Customer customer)
+        {
+            customer.Fee = customer.Fee + 5;
+            var money = customer.Fee;
+            return money;
+        }
+
+
+        public ActionResult MakePayment(string id)
+        {
+            Customer customer = db.Customer.Find(id);
+            return View(customer);
+        }
+        [HttpPost, ActionName("MakePayment")]
+        public ActionResult MakePayment(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            //customer.ApplicationUserId = userId;
+            var currentCustomer = (from c in db.Customer where c.ApplicationUserId == userId select c).FirstOrDefault();
+            var fee = Payment(currentCustomer);
+            if (currentCustomer != null) currentCustomer.Fee = fee;
+            {
+                currentCustomer.SpecialPickupDate = null;
+            }
+            db.Entry(currentCustomer).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("EmployeeTodayPickups");
+        }
         // GET: Customer
         public ActionResult Index()
         {
