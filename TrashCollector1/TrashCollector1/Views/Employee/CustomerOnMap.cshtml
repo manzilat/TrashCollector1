@@ -9,36 +9,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- This stylesheet contains specific styles for displaying
-         the map on this page. Replace it with your own styles as
-         described in the documentation:
-         https://developers.google.com/maps/documentation/javascript/tutorial
-    -->
-    <link rel="stylesheet" href="/maps/documentation/javascript/cgc/demos.css">
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        #map {
+            height: 520px;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <div id="map"></div>
     <script>
-      function initMap() {
-        var myLatLng = {lat: -25.363, lng: 131.044};
-
-        // Create a map object and specify the DOM element
-        // for display.
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: myLatLng,
-          zoom: 4
-        });
-
-        // Create a marker and set its position.
-        var marker = new google.maps.Marker({
-          map: map,
-          position: myLatLng,
-          title: 'Hello World!'
-        });
-      }
-
+        var geocoder;
+        var map;
+        function initMap() {
+            geocoder = new google.maps.Geocoder();
+            var latlng = new google.maps.LatLng(-34.397, 150.644);
+            var mapOptions = {
+                zoom: 8,
+                center: latlng
+            }
+            map = new google.maps.Map(document.getElementById('map'), mapOptions);
+            var street = "@ViewBag.Address.ToString()";
+            var zip = "@ViewBag.Zipcode.ToString()";
+            var address = (streetName + " " + zip + " ");
+            geocoder.geocode({ 'address': address /*+ " " + zip */ }, function (results, status) {
+                if (status == 'OK') {
+                    map.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        animation: google.maps.Animation.BOUNCE, //Make this baby bounce
+                        position: results[0].geometry.location
+                    });
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+            
+        }
     </script>
-    <script  src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=ENTERKEY&callback=initMap"
             async defer></script>
+    
 </body>
 </html>
