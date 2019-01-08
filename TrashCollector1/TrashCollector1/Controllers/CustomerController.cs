@@ -12,34 +12,36 @@ namespace TrashCollector1.Controllers
     public class CustomerController : Controller
     {
         public ApplicationDbContext db = new ApplicationDbContext();
-        public double? Payment(Customer customer)
+        public double? ChargesForCustomer(Customer customer)
         {
-            customer.Fee = customer.Fee + 5;
+            customer.Fee = customer.Fee + 10;
             var money = customer.Fee;
             return money;
         }
 
 
-        public ActionResult MakePayment(string id)
-        {
-            Customer customer = db.Customer.Find(id);
-            return View(customer);
-        }
-        [HttpPost, ActionName("MakePayment")]
-        public ActionResult MakePayment(int id)
+        public ActionResult MakePayment()
         {
             var userId = User.Identity.GetUserId();
             //customer.ApplicationUserId = userId;
             var currentCustomer = (from c in db.Customer where c.ApplicationUserId == userId select c).FirstOrDefault();
-            var fee = Payment(currentCustomer);
-            if (currentCustomer != null) currentCustomer.Fee = fee;
-            {
-                currentCustomer.SpecialPickupDate = null;
-            }
+           return View (currentCustomer);
+        }
+       
+        public ActionResult MakePaymentForPickups(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            //customer.ApplicationUserId = userId;
+            var currentCustomer = (from c in db.Customer where c.ApplicationUserId == userId select c).FirstOrDefault();
+            currentCustomer.PickupCompleted = true;
+            currentCustomer.Fee = 0;
             db.Entry(currentCustomer).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("EmployeeTodayPickups");
+
+            return View(currentCustomer);
         }
+       
+
         // GET: Customer
         public ActionResult Index()
         {

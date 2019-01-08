@@ -323,6 +323,7 @@
     <Content Include="Views\Employee\ConfirmPickup.cshtml" />
     <Content Include="Views\Employee\CustomerOnMap.cshtml" />
     <Content Include="Views\Customer\MakePayment.cshtml" />
+    <Content Include="Views\Employee\CustomerDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
