@@ -215,35 +215,7 @@ namespace TrashCollector1.Controllers
             return View(customer);
         }
 
-        public ActionResult Fee(string id)
-        {
-            Customer customer = db.Customer.Find(id);
-            return View(customer);
-        }
-
-        [HttpPost, ActionName("Fee")]
-        public ActionResult ConfirmedPickup(string id)
-        {
-            var currentCustomer = (from c in db.Customer where c.ApplicationUserId == id select c).FirstOrDefault();
-            var fee = CustomerCharges(currentCustomer);
-
-            if (currentCustomer != null) currentCustomer.Fee = fee;
-            if (currentCustomer != null) currentCustomer.IsConfirmed = true;
-           
-
-            db.Entry(currentCustomer).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("EmployeeTodayPickups");
-        }
-
-        public double? CustomerCharges(Customer customer)
-        {
-
-            customer.Fee = customer.Fee +10;
-            var money = customer.Fee;
-
-            return money;
-        }
+        
 
 
         public ActionResult CustomerOnMap(string id)
