@@ -25,16 +25,22 @@ namespace TrashCollector1.Controllers
             var userId = User.Identity.GetUserId();
             //customer.ApplicationUserId = userId;
             var currentCustomer = (from c in db.Customer where c.ApplicationUserId == userId select c).FirstOrDefault();
-           return View (currentCustomer);
+           
+            return View (currentCustomer);
         }
        
-        public ActionResult MakePaymentForPickups(int id)
+        public ActionResult MakePaymentForPickups(int? id)
         {
             var userId = User.Identity.GetUserId();
             //customer.ApplicationUserId = userId;
             var currentCustomer = (from c in db.Customer where c.ApplicationUserId == userId select c).FirstOrDefault();
             currentCustomer.PickupCompleted = true;
-            currentCustomer.Fee = 0;
+            currentCustomer.Fee = 10;
+            var charge = ChargesForCustomer(currentCustomer);
+
+            if (currentCustomer != null) currentCustomer.Fee = charge;
+            if (currentCustomer != null) currentCustomer.IsConfirmed = true;
+
             db.Entry(currentCustomer).State = EntityState.Modified;
             db.SaveChanges();
 

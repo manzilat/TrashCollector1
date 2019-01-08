@@ -1,0 +1,22 @@
+﻿@model TrashCollector1.Models.Customer
+
+@{
+    ViewBag.Title = "MakePaymentForPickups";
+}
+
+<h2>Make Payment For Pickups</h2>
+
+
+<h3>@Model.FullName, here is a summary of your accounts due: </h3>
+<hr />
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fee):
+        </dt>
+        <dd>
+            $@Html.DisplayFor(model => model.Fee).00
+        </dd>
+    </dl>
+</div>
+

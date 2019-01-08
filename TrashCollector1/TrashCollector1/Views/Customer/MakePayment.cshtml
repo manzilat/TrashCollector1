@@ -27,31 +27,35 @@
 
 
 
-    <div>
-        <br />   <br />   <br />   <br />
-        <dl class="dl-horizontal">
-            @Html.HiddenFor(model => model.ApplicationUserId)
-            <dt>
-                @Html.DisplayNameFor(model => model.Fee):
-            </dt>
-            <dd>
-                $@Html.DisplayFor(model => model.Fee).00
-            </dd>
-        </dl>
+<div>
+    <br />   <br />   <br />   <br />
+    <h6>Make Payment for</h6>
+    <dl class="dl-horizontal">
+
+        @Html.HiddenFor(model => model.ApplicationUserId)
 
 
-        <h2>Make Payment</h2>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fee):
+        </dt>
+        <dd>
+            $@Html.DisplayFor(model => model.Fee).00
+        </dd>
+    </dl>
 
-        <form action="your-server-side-code" method="POST">
-            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                    data-key="pk_test_TYooMQauvdEDq54NiTphI7jx"
-                    data-amount="@ViewBag.TotalBill"
-                    data-name="Stripe.com"
-                    data-description="charge"
-                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                    data-locale="auto"
-                    data-zip-code="false">
-            </script>
-        </form>
-    </div>
+
+
+
+    <form action="your-server-side-code" method="POST">
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="pk_test_TYooMQauvdEDq54NiTphI7jx"
+                data-amount="@ViewBag.TotalBill"
+                data-name="Stripe.com"
+                data-description="charge"
+                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                data-locale="auto"
+                data-zip-code="false">
+        </script>
+    </form>
+</div>
 }
