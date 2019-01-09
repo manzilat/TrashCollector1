@@ -214,10 +214,12 @@ namespace TrashCollector1.Controllers
             }
             return View(customer);
         }
+        public ActionResult CustomerOnMap()
+        {
+            return View();
+        }
 
-        
-
-
+        [HttpPost]
         public ActionResult CustomerOnMap(string id)
         {
             var userId = User.Identity.GetUserId();
