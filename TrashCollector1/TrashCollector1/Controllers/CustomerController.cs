@@ -14,7 +14,8 @@ namespace TrashCollector1.Controllers
         public ApplicationDbContext db = new ApplicationDbContext();
         public double? ChargesForCustomer(Customer customer)
         {
-            customer.Fee = customer.Fee + 10;
+            customer.Fee = customer.Fee + 5;
+            
             var money = customer.Fee;
             return money;
         }
@@ -35,13 +36,14 @@ namespace TrashCollector1.Controllers
             //customer.ApplicationUserId = userId;
             var currentCustomer = (from c in db.Customer where c.ApplicationUserId == userId select c).FirstOrDefault();
             currentCustomer.PickupCompleted = true;
-           
+            currentCustomer.Fee = 0;
+            
             var charge = ChargesForCustomer(currentCustomer);
-
+            
             if (currentCustomer != null) currentCustomer.Fee = charge;
-            if (currentCustomer != null) currentCustomer.IsConfirmed = true;
-
-            db.Entry(currentCustomer).State = EntityState.Modified;
+            if (currentCustomer != null) currentCustomer.IsConfirmed = true ;
+          
+                db.Entry(currentCustomer).State = EntityState.Modified;
             db.SaveChanges();
 
             return View(currentCustomer);
@@ -284,9 +286,39 @@ namespace TrashCollector1.Controllers
 
             return View(customer);
         }
-        public ActionResult DetailsOfSuspendedAccount(int? id)
+        public ActionResult DetailsOfSuspendedAccount(int id)
         {
+            var FoundUserId = User.Identity.GetUserId();
+            Customer customer = db.Customer.Where(c => c.ApplicationUserId == FoundUserId).FirstOrDefault();
+            return View(customer);
+        }
+
+        public ActionResult EditSuspendAccount(int? id)
+        {
+
             Customer customer = db.Customer.Find(id);
+
+            return View(customer);
+        }
+        // POST: Customer/Edit/5
+        [HttpPost]
+        public ActionResult EditSuspendAccount([Bind(Include = " AccountSuspendDate,AccountSuspendEndDate")] Customer customer, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                Customer updatedCustomer = db.Customer.Find(id);
+                if (updatedCustomer == null)
+                {
+                    return RedirectToAction("DisplayError", "Customer");
+                }
+                updatedCustomer.AccountSuspendDate = customer.AccountSuspendDate;
+                updatedCustomer.AccountSuspendEndDate = customer.AccountSuspendEndDate;
+               
+
+                db.Entry(updatedCustomer).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("DetailsOfSuspendedAccount");
+            }
             return View(customer);
         }
     }

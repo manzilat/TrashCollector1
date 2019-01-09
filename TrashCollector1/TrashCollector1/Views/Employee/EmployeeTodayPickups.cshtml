@@ -90,11 +90,12 @@
         </td>
         
            
-            <td>
-                @Html.ActionLink("Confirm Pickup", "ConfirmPickup", new { id = item.Id }) |
-                @Html.ActionLink("Details", "CustomerDetails", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
+        <td>
+            @*@Html.ActionLink("Confirm Extra Pickup", "ConfirmExtraPickup", new { id = item.Id }) |*@
+            @Html.ActionLink("Confirm Pickup", "ConfirmPickup", new { id = item.Id }) |
+            @Html.ActionLink("Details", "CustomerDetails", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
     </tr>
         
 

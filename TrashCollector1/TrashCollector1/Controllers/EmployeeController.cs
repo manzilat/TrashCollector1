@@ -207,6 +207,7 @@ namespace TrashCollector1.Controllers
                     return RedirectToAction("DisplayError", "Customer");
                 }
                 updatedCustomer.IsConfirmed = customer.IsConfirmed;
+                
 
                 db.Entry(updatedCustomer).State = EntityState.Modified;
                 db.SaveChanges();
@@ -214,6 +215,37 @@ namespace TrashCollector1.Controllers
             }
             return View(customer);
         }
+        //public ActionResult ConfirmExtraPickup(int? id)
+        //{
+
+        //    Customer customer = db.Customer.Find(id);
+
+        //    return View(customer);
+        //}
+
+
+        //[HttpPost]
+        //public ActionResult ConfirmExtraPickup([Bind(Include = " IsConfirmed")] Customer customer, int id)
+        //{
+
+        //    if (ModelState.IsValid)
+        //    {
+
+        //        Customer updatedCustomer = db.Customer.Find(id);
+        //        if (updatedCustomer == null)
+        //        {
+        //            return RedirectToAction("DisplayError", "Customer");
+        //        }
+        //        updatedCustomer.IsConfirmed = customer.IsConfirmed;
+        //        updatedCustomer.Fee += 5;
+
+        //        db.Entry(updatedCustomer).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("EmployeeTodayPickups");
+        //    }
+        //    return View(customer);
+        //}
+        
         public ActionResult CustomerOnMap()
         {
             return View();

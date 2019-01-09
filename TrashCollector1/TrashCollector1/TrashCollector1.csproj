@@ -325,6 +325,8 @@
     <Content Include="Views\Customer\MakePayment.cshtml" />
     <Content Include="Views\Employee\CustomerDetails.cshtml" />
     <Content Include="Views\Customer\CheckBalance.cshtml" />
+    <Content Include="Views\Employee\ConfirmExtraPickup.cshtml" />
+    <Content Include="Views\Customer\EditSuspendAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
