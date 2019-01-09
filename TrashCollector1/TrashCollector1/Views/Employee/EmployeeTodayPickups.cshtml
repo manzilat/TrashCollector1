@@ -44,9 +44,7 @@
             @Html.DisplayNameFor(model => model.AccountSuspendEndDate)
         </th>
 
-        <th scope="col">
-            @Html.DisplayNameFor(model => model.PickupCompleted)
-        </th>
+     
         
 
         <th></th>
@@ -91,9 +89,6 @@
             @Html.DisplayFor(modelItem => item.AccountSuspendEndDate)
         </td>
         
-            <td>
-                @Html.CheckBoxFor(modelItem => item.PickupCompleted)
-            </td>
            
             <td>
                 @Html.ActionLink("Confirm Pickup", "ConfirmPickup", new { id = item.Id }) |
